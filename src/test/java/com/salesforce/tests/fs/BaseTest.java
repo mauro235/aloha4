@@ -1,0 +1,27 @@
+package com.salesforce.tests.fs;
+
+import org.junit.Assert;
+import org.junit.Rule;
+import org.junit.contrib.java.lang.system.SystemOutRule;
+import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
+
+import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.emptyStandardInputStream;
+
+/**
+ * Unit Test runner: capture stdin/stdout for testing
+ */
+public class BaseTest {
+
+    @Rule
+    public final TextFromStandardInputStream systemInMock = emptyStandardInputStream();
+
+    @Rule
+    public final SystemOutRule systemOutRule = new SystemOutRule().muteForSuccessfulTests().enableLog();
+
+    protected void runTest(String[] expectedOutput, String... input) {
+        systemInMock.provideLines(input);
+        String[] args = {"stateless"};
+        Main.main(args);
+        Assert.assertTrue(systemOutRule.getLogWithNormalizedLineSeparator().contains(String.join("", expectedOutput)));
+    }
+}
