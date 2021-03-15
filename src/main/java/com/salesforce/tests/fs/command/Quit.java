@@ -6,18 +6,11 @@ public class Quit extends CommandImpl {
     public static String command = "quit";
 
     public Quit() {
+        commandName = command;
     }
 
     @Override
-    public String parse(String cmd, List<String> args) {
-        if (cmd.equals(command)) {
-            return null;
-        } else {
-            if (nextCommand != null) {
-                return nextCommand.parse(cmd, args);
-            } else {
-                return emtpyChainError(cmd);
-            }
-        }
+    public String execute(String cmd, List<String> args) {
+        return null;
     }
 }

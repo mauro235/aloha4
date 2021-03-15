@@ -5,11 +5,7 @@ import java.util.List;
 public class Shell extends CommandImpl {
 
     @Override
-    public String parse(String cmd, List<String> args) {
-        if (nextCommand != null) {
-            return nextCommand.parse(cmd, args);
-        } else {
-            return "";
-        }
+    public String execute(String cmd, List<String> args) {
+        return "";
     }
 }

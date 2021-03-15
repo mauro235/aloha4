@@ -10,24 +10,17 @@ public class ChangeDir extends CommandImpl {
     private Filesystem fs;
 
     public ChangeDir(Filesystem fs) {
+        commandName = command;
         this.fs = fs;
     }
 
     // error: 'Invalid path' if any of path parts are invalid, 'Directory not found'
     @Override
-    public String parse(String cmd, List<String> args) {
-        if (cmd.equals(command)) {
-            if (args.size() == 2) {
-                return fs.changePath(args.get(1));
-            } else {
-                return command + " takes only 1 argument";
-            }
+    public String execute(String cmd, List<String> args) {
+        if (args.size() == 2) {
+            return fs.changePath(args.get(1));
         } else {
-            if (nextCommand != null) {
-                return nextCommand.parse(cmd, args);
-            } else {
-                return emtpyChainError(cmd);
-            }
+            return command + " takes only 1 argument";
         }
     }
 }

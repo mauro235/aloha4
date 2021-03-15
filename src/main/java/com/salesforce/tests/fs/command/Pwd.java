@@ -10,22 +10,16 @@ public class Pwd extends CommandImpl {
     private Filesystem fs;
 
     public Pwd(Filesystem fs) {
+        commandName = command;
         this.fs = fs;
     }
 
-    public String parse(String cmd, List<String> args) {
-        if (cmd.equals(command)) {
-            if (fs != null) {
-                return fs.getCurrentPath();
-            } else {
-                return "Error processing command " + command;
-            }
+    @Override
+    public String execute(String cmd, List<String> args) {
+        if (fs != null) {
+            return fs.getCurrentPath();
         } else {
-            if (nextCommand != null) {
-                return nextCommand.parse(cmd, args);
-            } else {
-                return "Unknown command '" + cmd + "'";
-            }
+            return "Error processing command " + command;
         }
     }
 }

@@ -18,7 +18,7 @@ Los strings ingresados son parseados por el mismo main, aunque podría haberse e
 
 El comando y los argumentos parseados son enviados al primer objeto de la cadena de responsabilidad (Shell).
 
-Los comandos implementan una interface con un método parse donde encapsulan el comportamiento propio y al mismo tiempo 
+Los comandos implementan una interface con un método execute donde encapsulan el comportamiento propio y al mismo tiempo 
 identifican si fueron llamados o deben pasar la decisión al siguiente en la lista de comandos.
 
 Algunos comandos tienen una referencia al FS ya que necesitan acceso al mismo
